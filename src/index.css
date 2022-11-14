@@ -13,11 +13,12 @@
 
   --color-purple: #9d0191;
   --color-orange: #ff7722;
+  
 
   --color-primary: #007bff;
   --color-sucess: #28a745;
 }
-
+/* #8c52ff;*/
 * {
   margin: 0;
   padding: 0;

@@ -9,10 +9,10 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-          
-            <Route path="/" element= { <Home/>} />
-            <Route path="/contact " element= { <Contact/> } />
-          
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path ='/contact' component={Contact} />
+          </Switch>
         <Footer />
       </BrowserRouter>
     </>
