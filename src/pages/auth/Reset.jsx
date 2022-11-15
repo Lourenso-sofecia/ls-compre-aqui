@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from "./auth.module.scss";
 
 import Card from '../../components/card/Card';
-import resetImg from "../../assets/loginImg.jpeg";
+import resetImg from "../../assets/resetImg.jpg";
 
 
 const Reset = () => {

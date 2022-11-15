@@ -4,7 +4,7 @@ import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 
 import Card from '../../components/card/Card';
-import loginImg from "../../assets/loginImg.jpeg";
+import loginImg from "../../assets/loginImg.jpg";
 
 
 const Login = () => {
@@ -28,9 +28,10 @@ const Login = () => {
             </div>
             <p>-- or --</p>
           </form>
-          <button className = '--btn --btn-danger -btn-block'>
-            <FaGoogle color = '#fff' />
-            Login With Google
+          <button className = '--btn-google --btn-danger -btn-block'>
+            <span className = '--btn-google-space'><FaGoogle color = '#fff' size={12} /> </span>
+              Login With Google
+            
           </button>
           <span className = {styles.register}>
             <p>Don´t have an account ?</p>

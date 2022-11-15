@@ -28,20 +28,57 @@
   scroll-behavior: smooth;
 }
 
-html {
+html 
+{
   font-size: 10px;
 }
 
-body {
+body 
+{
   font-family: var(--font-family);
 }
 
-section {
+section 
+{
   width: 100%;
-  padding: 4rem 0;
+  padding: 4rem 0px;
 }
 
-.container {
-  max-width: 1000px;
+.container 
+{
+  max-width: 1200px;
   margin: 0 auto;
+}
+.--btn, .--btn-google
+{
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 100%;
+  border: 1px solid #777;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+
+  color: #fff;
+}
+.--btn-google
+{
+  background-color: #9c27cf;
+}
+.--btn-google:hover
+{
+  background-color: #8c52ff;
+  transition: all 0.5s;
+}
+.--btn
+{
+  background-color: #8c52ff;
+}
+.--btn:hover
+{
+  background-color: #9c27cf;
+  transition: all 0.5s;
 }

@@ -4,7 +4,7 @@ import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 
 import Card from '../../components/card/Card';
-import registerImg from "../../assets/loginImg.jpeg";
+import registerImg from "../../assets/img.jpg";
 
 
 const Register = () => {
