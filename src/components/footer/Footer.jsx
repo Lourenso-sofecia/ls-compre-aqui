@@ -1,9 +1,15 @@
 import React from 'react';
-import './Footer.module.scss';
+import styles from './Footer.module.scss';
 
+const date = new Date();
+const year = date.getFullYear();
+
+//----------------------------------------------------------------
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className = {styles.footer}>
+      &copy; {year} LSML. All Rights Reserved
+    </footer>
   )
 }
 
