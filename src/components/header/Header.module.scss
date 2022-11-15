@@ -38,12 +38,12 @@ header
     width: 100%;
     background-color: var(--dark-blue);
     color: #fff;
-  
+    font-size: 1.4rem;
     .header 
     {
         width: 100%;
         height: 8rem;
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 0 auto;
         padding: 1rem;
         display: flex;
@@ -88,8 +88,13 @@ header
                     &:hover 
                     {
                         color: #8c52ff;
+                        //border-bottom: 1px solid #8c52ff;
                     }
+                    text-decoration: none;
+ 
                 }
+                
+                
             }
         }
     }
@@ -103,6 +108,7 @@ header
             display: flex;
             color: #fff;
             position: relative;
+            text-decoration: none;
             &:hover 
             {
                 color: #8c52ff;
@@ -118,6 +124,7 @@ header
                 right: -0.5rem;
                 font-weight: 500;
             }
+            
         }
   
         span 
@@ -133,6 +140,7 @@ header
         {
             margin: 0 5px;
             color: #fff;
+            text-decoration: none;
             &:hover 
             {
                 color: #8c52ff;
@@ -211,18 +219,7 @@ header
                 display: block;
                 .cart 
                 {
-                    // display: block;
-                    // padding: 5px 0;
                     border-bottom: 1px solid #333;
-                    // a {
-                    //   position: relative;
-                    //   p {
-                    //     position: absolute;
-                    //     top: -1rem;
-                    //     left: 5rem;
-                    //     font-weight: 500;
-                    //   }
-                    // }
                 }
     
                 .links 
@@ -234,6 +231,7 @@ header
                         margin: 0;
                         padding: 5px 0;
                         border-bottom: 1px solid #333;
+                        
                     }
                 }
             }
@@ -247,6 +245,7 @@ header
             {
                 color: #fff;
                 position: relative;
+                text-decoration: none;
                 &:hover 
                 {
                     color: #8c52ff;
@@ -254,8 +253,8 @@ header
                 p 
                 {
                     position: absolute;
-                    top: -1rem;
-                    left: 5rem;
+                    top: -1.6rem;
+                    left: 4.2rem;
                     font-weight: 500;
                     color: #fff;
                 }
@@ -273,7 +272,7 @@ header
         {
             display: flex;
             > * {
-                margin-left: 2rem;
+                margin-left: 1.7rem;
             }
         }
     }
