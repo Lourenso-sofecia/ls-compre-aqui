@@ -41,13 +41,13 @@ body
 section 
 {
   width: 100%;
-  padding: 4rem 0px;
+  padding: 0px 0px 1rem 0px;
 }
 
 .container 
 {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: -6px auto;
 }
 .--btn, .--btn-google
 {
@@ -81,4 +81,9 @@ section
 {
   background-color: #9c27cf;
   transition: all 0.5s;
+}
+.txt-reset{
+  font-size: 1.4rem;
+  
+  text-decoration: none;
 }

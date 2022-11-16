@@ -22,8 +22,8 @@ const Register = () => {
           </form>
           
           <span className = {styles.register}>
-            <p>Already an account ? </p>
-            <Link to = "/login"> Login</Link>
+            <p className = 'txt-reset'>Already an account ?  </p>
+            <Link to = "/login" className = 'txt-reset'> Login</Link>
           </span>
         </div>
       </Card>

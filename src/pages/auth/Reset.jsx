@@ -17,10 +17,10 @@ const Reset = () => {
             <button className = '--btn --btn-primary --btn-block'>Reset Password</button>
             <div className = {styles.links}>
               <p>
-                <Link to = "/login"> Login </Link>
+                <Link to = "/login" className = 'txt-reset'> Login </Link>
               </p>
               <p>
-                <Link to = "/register"> Register </Link>
+                <Link to = "/register" className = 'txt-reset'> Register </Link>
               </p>
             </div>
           </form>

@@ -22,7 +22,7 @@ const Login = () => {
             
             <button className = '--btn --btn-primary --btn-block'>Login</button>
             <div className = {styles.links} >
-              <Link to = "/reset">
+              <Link to = "/reset" className = 'txt-reset'>              
                 Reset Password
               </Link>
             </div>
@@ -34,8 +34,8 @@ const Login = () => {
             
           </button>
           <span className = {styles.register}>
-            <p>Don´t have an account ?</p>
-            <Link to = "/register">Register</Link>
+            <p className = 'txt-reset'>Don´t have an account ?</p>
+            <Link to = "/register" className = 'txt-reset'>Register</Link>
           </span>
         </div>
       </Card>
