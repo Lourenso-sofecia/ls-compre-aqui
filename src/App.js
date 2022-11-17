@@ -14,7 +14,7 @@ function App() {
           <Route exact path ='/contact' element = {<Contact />} />
           <Route exact path ='/login' element = {<Login />} />
           <Route exact path ='/register' element = {<Register />} />
-          <Route exact path ='/reset' component = {<Reset />} />
+          <Route exact path ='/reset' element = {<Reset />} />
         </Routes>
         <Footer />
       </BrowserRouter>

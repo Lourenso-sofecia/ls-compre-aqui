@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
@@ -8,6 +8,13 @@ import loginImg from "../../assets/loginImg.jpg";
 
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const loginUser = (e)=>{
+
+  };
+
   return (
     <section className = { `container ${styles.auth}` }>
       <div className = {styles.img}>
@@ -17,7 +24,12 @@ const Login = () => {
         <div className = {styles.form}>
           <h2>Login</h2>
           <form action = "">
-            <input type = "text" placeholder = 'lsdevgamer@gmail.com' required />
+            <input 
+              type = "email"
+              
+              placeholder = 'lsdevgamer@gmail.com' 
+              required 
+            />
             <input type = "password" name="" id="" placeholder = 'Password' required />
             
             <button className = '--btn --btn-primary --btn-block'>Login</button>
