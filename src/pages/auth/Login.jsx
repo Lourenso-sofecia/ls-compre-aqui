@@ -3,11 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
+
 import { auth } from '../../firebase/config';
 
 import Card from '../../components/card/Card';
 import loginImg from "../../assets/loginImg.jpg";
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../../components/loader/Loader';
 
 
@@ -18,6 +22,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  //----------------------------------------------------------------
   const loginUser = (e)=>{
     e.preventDefault();
     setIsLoading(true);
@@ -36,7 +41,23 @@ const Login = () => {
       setIsLoading(false);
     });
   };
-
+  //----------------------------------------------------------------
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      
+      const user = result.user;
+      toast.success("Login SuccessFull");
+      navigate("/");
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      toast.error(error.message);
+      
+    });
+  };
+  //----------------------------------------------------------------
   return (
     <>
       <ToastContainer />
@@ -72,7 +93,7 @@ const Login = () => {
               </div>
               <p>-- or --</p>
             </form>
-            <button type='submit' className = '--btn-google --btn-danger -btn-block'>
+            <button type='submit' onClick={signInWithGoogle}  className = '--btn-google --btn-danger -btn-block'>
               <span className = '--btn-google-space'><FaGoogle color = '#fff' size={12} /> </span>
                 Login With Google
               
