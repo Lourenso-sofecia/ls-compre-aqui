@@ -2,11 +2,11 @@
 
 .auth 
 {
-    min-height: 80vh;
+    min-height: 77vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    border: 2px solid red;
     .img 
     {
         animation: slide-down 0.5s ease;
@@ -89,5 +89,27 @@
     .img 
     {
         display: none;
+    }
+    
+    .auth 
+    {
+        .form 
+        {
+            h2{
+                font-size: 2.7rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px){
+    .auth 
+    {
+        .form 
+        {
+            width: 25rem;
+            h2{
+                font-size: 2rem;
+            }
+        }
     }
 }

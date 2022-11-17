@@ -84,6 +84,10 @@ section
 }
 .txt-reset{
   font-size: 1.4rem;
-  
   text-decoration: none;
+}
+@media screen and (max-width: 350px){
+  .txt-reset{
+    font-size: 1.1rem;
+  }
 }
