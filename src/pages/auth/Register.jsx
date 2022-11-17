@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { UseNavigate } from 'react-router-dom';
 import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 
@@ -22,7 +23,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  //const navigate = useNavigate();
+  //const navigate = UseNavigate();
 
 
   const [mensagem, setmensagem] = useState("");

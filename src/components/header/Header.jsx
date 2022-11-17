@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import styles from './Header.module.scss';
 import LogoCompreAqui from '../../assets/logo/LogoCompreAqui.png';
 
@@ -46,6 +46,12 @@ const Header = () => {
     setShowMenu(false);
   };
 
+  //---------------------------- Use History--------------------------------------------------------
+  /*const history = useHistory();
+  const handleClick = () =>{
+    history.push('/');
+  };
+  */
   return (
     <header>
       <div className = {styles.header}>
