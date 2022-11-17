@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/config";
 
-import { Link } from 'react-router-dom';
-import { UseNavigate } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 
@@ -23,8 +23,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  //const navigate = UseNavigate();
-
+  const navigate = useNavigate();
 
   const [mensagem, setmensagem] = useState("");
 
@@ -35,21 +34,26 @@ const Register = () => {
     {
       toast.error("Passwords do not match")
     }
-    setIsLoading(true);
+    else
+    {
+      setIsLoading(true);
 
-    createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      //Signed in
-      const user = userCredential.user;
-      console.log(user);
-      setIsLoading(false);
-      toast.success("Registration successful...")
-      //...
-    })
-    .catch((error) =>{
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        //Signed in
+        const user = userCredential.user;
+        console.log(user);
+        setIsLoading(false);
+        toast.success("Registration successful...")
+        navigate("/login");
+        //...
+      })
+      .catch((error) =>{
+        toast.error(error.message);
+        setIsLoading(false);
+      });
+    }
+    
   };
 
   return (
