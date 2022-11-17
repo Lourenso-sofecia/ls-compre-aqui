@@ -1,36 +1,108 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/config";
+
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "./auth.module.scss";
 import { FaGoogle } from 'react-icons/fa';
 
 import Card from '../../components/card/Card';
+import Loader from '../../components/loader/Loader';
 import registerImg from "../../assets/img.jpg";
 
 
 const Register = () => {
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  //const navigate = useNavigate();
+
+
+  const [mensagem, setmensagem] = useState("");
+
+  const registerUser = (e) => {
+    e.preventDefault();
+    console.log(name, email, password, confirmPassword);
+    if(password !== confirmPassword) 
+    {
+      toast.error("Passwords do not match")
+    }
+    setIsLoading(true);
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      //Signed in
+      const user = userCredential.user;
+      console.log(user);
+      setIsLoading(false);
+      toast.success("Registration successful...")
+      //...
+    })
+    .catch((error) =>{
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+  };
+
   return (
-    <section className = { `container ${styles.auth}` }>
-      <Card>
-        <div className = {styles.form}>
-          <h2>Register</h2>
-          <form action = "">
-          <input type = "text" placeholder = 'Nome' required />
-            <input type = "email" placeholder = 'lsdevgamer@gmail.com' required />
-            <input type = "password" name="" id="" placeholder = 'Password' required />
-            <input type = "password" name="" id="" placeholder = 'Confirm Password' required />
-            <button className = '--btn --btn-primary --btn-block'>Register</button>
-          </form>
-          
-          <span className = {styles.register}>
-            <p className = 'txt-reset'>Already an account ?  </p>
-            <Link to = "/login" className = 'txt-reset'> Login</Link>
-          </span>
+    <>
+      <ToastContainer />
+      {isLoading && <Loader />}
+      <section className = { `container ${styles.auth}` }>
+        <Card>
+          <div className = {styles.form}>
+            <h2>Register</h2>
+            <form onSubmit={registerUser}>
+              <input 
+                type = "text" 
+                placeholder = 'Nome' 
+                value = {name}
+                onChange = { (e) => setName(e.target.value)}
+                required 
+              />
+              <input 
+                type = "email" 
+                placeholder = 'lsdevgamer@gmail.com' 
+                value = {email}
+                onChange = { (e) => setEmail(e.target.value)}
+                required 
+              />
+              <p>{mensagem}</p>
+              <input 
+                type = "password" 
+                placeholder = 'Password' 
+                value = {password}
+                onChange = { (e) => setPassword(e.target.value)}
+                required 
+              />
+              <input 
+                type = "password"  
+                placeholder = 'Confirm Password' 
+                value = {confirmPassword}
+                onChange = { (e) => setConfirmPassword(e.target.value)}
+                required 
+              />
+              <button type='submit' className = '--btn --btn-primary --btn-block'>Register</button>
+            </form>
+            
+            <span className = {styles.register}>
+              <p className = 'txt-reset'>Already an account ?  </p>
+              <Link to = "/login" className = 'txt-reset'> Login</Link>
+            </span>
+          </div>
+        </Card>
+        <div className = {styles.img}>
+          <img src={registerImg} alt="Register" width="400" />
         </div>
-      </Card>
-      <div className = {styles.img}>
-        <img src={registerImg} alt="Register" width="400" />
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
