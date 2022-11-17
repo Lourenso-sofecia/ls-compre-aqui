@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from "./auth.module.scss";
 
@@ -7,13 +7,21 @@ import resetImg from "../../assets/resetImg.jpg";
 
 
 const Reset = () => {
+  const [email, setEmail] = useState("");
+
   return (
     <section className = { `container ${styles.auth}` }>
       <Card>
         <div className = {styles.form}>
           <h2>Reset Password</h2>
           <form action = "">
-            <input type = "email" placeholder = 'lsdevgamer@gmail.com' required />
+            <input 
+              type = "email" 
+              value = {email}
+              onChange = { (e) => setEmail(e.target.value)}
+              placeholder = 'lsdevgamer@gmail.com' 
+              required 
+              />
             <button className = '--btn --btn-primary --btn-block'>Reset Password</button>
             <div className = {styles.links}>
               <p>
