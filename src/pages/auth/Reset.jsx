@@ -17,21 +17,23 @@ const Reset = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
   const resetPassword = (e) => {
     e.preventDefault();
-
     setIsLoading(true);
+
     sendPasswordResetEmail(auth, email)
-    .then( () => {
-      toast.success("Check your email to reset your password");
-      navigate("/login");
-      setIsLoading(false);
-    })
-    .catch( (error) => {
-      toast.error(error.message);
-      setIsLoading(false);
-    });
+      .then( () => {
+        toast.success("Check your email to reset your password");
+        navigate("/login");
+        setIsLoading(false);
+      })
+      .catch( (error) => {
+        toast.error(error.message);
+        setIsLoading(false);
+      });
   };
+  
   return (
     <>
       <ToastContainer />

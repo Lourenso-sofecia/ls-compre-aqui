@@ -1,14 +1,14 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { FaShoppingCart } from 'react-icons/fa';
+import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
 import { Link, NavLink, useHistory, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
 import LogoCompreAqui from '../../assets/logo/LogoCompreAqui.png';
 import { auth } from '../../firebase/config';
-import { signOut } from 'firebase/auth';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,7 +40,33 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [displayName, setDisplayName] = useState("");
 
+  const navigate = useNavigate();
+
+  //-------------- Monitor currently sign in user --------------------------------
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        const uid = user.uid;
+        // Extraindo o nome do email do usuario
+        const userEmail = () => {
+          let pos = user.email.indexOf('@');
+          if(pos >= 0){
+            user.email = user.email.substring(0, pos);
+          }
+          return user.email;
+        }
+        //user.email.split("\\@")[0];
+        setDisplayName(userEmail);
+
+      }
+      else {
+        setDisplayName("");
+      }
+    });
+  }, []);
+  
   const controllLogo = () => {
     setShowLogo(!showLogo);
   };
@@ -52,16 +78,10 @@ const Header = () => {
   const hideMenu = () => {
     setShowMenu(false);
   };
-
-  //---------------------------- Use History--------------------------------------------------------
-  /*const history = useHistory();
-  const handleClick = () =>{
-    history.push('/');
-  };
-  */
-  const navigate = useNavigate();
+  
   const logoutUser = ()=>{
     setIsLoading(true);
+
     signOut(auth).then( ()=> {
       toast.warning("Logout SuccessFull");
       navigate("/login");
@@ -70,7 +90,8 @@ const Header = () => {
       toast.error(error.message);
       setIsLoading(false);
     }); 
-  }
+  };
+
   return (
     <>
       <ToastContainer />
@@ -112,6 +133,10 @@ const Header = () => {
             </ul>
             <div className = {styles["header-right"]} onClick = {hideMenu}>
               <span className = {styles.links}>
+                <a href="#">
+                  <FaUserCircle size={16} />
+                  Hi, {displayName}
+                </a>
                 <NavLink to = "/login" className = {activeLink} >Login</NavLink>
                 <NavLink to = "/register" className = {activeLink} >Register</NavLink>
                 <NavLink to = "/order-history" className = {activeLink} >My Orders</NavLink>

@@ -38,11 +38,11 @@ const Register = () => {
     {
       setIsLoading(true);
 
-      createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, email, password, name)
       .then((userCredential) => {
         //Signed in
         const user = userCredential.user;
-        console.log(user);
+        //console.log(user);
         setIsLoading(false);
         toast.success("Registration successful...")
         navigate("/login");
