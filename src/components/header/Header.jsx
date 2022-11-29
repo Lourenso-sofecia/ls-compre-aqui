@@ -13,6 +13,8 @@ import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../loader/Loader';
+import { useDispatch } from 'react-redux';
+import { SET_ACTIVE_USER } from '../../redux/slice/authSlice';
 
 const logo = (
   <div className = {styles.logo}>
@@ -41,29 +43,45 @@ const Header = () => {
   const [showLogo, setShowLogo] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [displayName, setDisplayName] = useState("");
-
+  
   const navigate = useNavigate();
+  
+  const dispatch = useDispatch();
 
   //-------------- Monitor currently sign in user --------------------------------
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(user) {
-        const uid = user.uid;
+        
+        const extraindoNome = user.email.substring(0, user.email.indexOf("@"));
+        const userName = extraindoNome.charAt(0). toUpperCase() + extraindoNome.slice(1);
+        setDisplayName(userName);
+        console.log("uName" + userName);
+        //const uid = user.uid;
         // Extraindo o nome do email do usuario
-        const userEmail = () => {
+        /*const userEmail = () => {
           let pos = user.email.indexOf('@');
           if(pos >= 0){
             user.email = user.email.substring(0, pos);
           }
           return user.email;
-        }
+        }*/
         //user.email.split("\\@")[0];
-        setDisplayName(userEmail);
+        //setDisplayName(user.displayName);
+        //console.log("DisplayName"+ user.displayName);
+        
 
       }
       else {
-        setDisplayName("");
+        setDisplayName(user.displayName);
+        console.log("else: "+user.displayName);
       }
+
+      dispatch( SET_ACTIVE_USER({
+        email: user.email,
+        userName: user.displayName ? user.displayName : displayName,
+        userID: user.uid,
+      }) )
     });
   }, []);
   

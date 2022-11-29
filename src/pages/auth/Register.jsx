@@ -16,8 +16,7 @@ import registerImg from "../../assets/img.jpg";
 
 
 const Register = () => {
-
-  const [name, setName] = useState("");
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,7 +28,7 @@ const Register = () => {
 
   const registerUser = (e) => {
     e.preventDefault();
-    console.log(name, email, password, confirmPassword);
+    console.log( email, password, confirmPassword);
     if(password !== confirmPassword) 
     {
       toast.error("Passwords do not match")
@@ -38,7 +37,7 @@ const Register = () => {
     {
       setIsLoading(true);
 
-      createUserWithEmailAndPassword(auth, email, password, name)
+      createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         //Signed in
         const user = userCredential.user;
@@ -65,13 +64,7 @@ const Register = () => {
           <div className = {styles.form}>
             <h2>Register</h2>
             <form onSubmit={registerUser}>
-              <input 
-                type = "text" 
-                placeholder = 'Nome' 
-                value = {name}
-                onChange = { (e) => setName(e.target.value)}
-                required 
-              />
+              
               <input 
                 type = "email" 
                 placeholder = 'lsdevgamer@gmail.com' 
