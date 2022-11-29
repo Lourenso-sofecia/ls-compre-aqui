@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-import { FaShoppingCart, FaUserCircle } from 'react-icons/fa';
+import { FaShoppingCart, FaSignOutAlt, FaUserCircle } from 'react-icons/fa';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi';
 
 import { Link, NavLink, useHistory, useNavigate } from 'react-router-dom';
@@ -44,7 +44,8 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [displayName, setDisplayName] = useState("");
   const [isLogin, setIsLogin] = useState(false);
-  
+  const [notIsLogin, setNotIsLogin] = useState(false);
+
   const navigate = useNavigate();
   
   const dispatch = useDispatch();
@@ -69,13 +70,16 @@ const Header = () => {
           })
         );
         setIsLogin(true);
+        setNotIsLogin(false);
       }
       else {
         setDisplayName("");
+        dispatch(REMOVE_ACTIVE_USER());
         setIsLogin(false);
+        setNotIsLogin(true);
       }
     });
-  }, []);
+  }, [dispatch, displayName]);
   
   const controllLogo = () => {
     setShowLogo(!showLogo);
@@ -143,27 +147,23 @@ const Header = () => {
             </ul>
             <div className = {styles["header-right"]} onClick = {hideMenu}>
               <span className = {styles.links}>
-                <a href="#">
-                  {
-                    isLogin &&
-                    <> 
-                      <FaUserCircle size={16} />
-                      Hi, {displayName}
-                    </>
-                  }
-                  
-                </a>
-                {
-
-                }
-                <NavLink to = "/login" className = {activeLink} >Login</NavLink>
-                <NavLink to = "/register" className = {activeLink} >Register</NavLink>
-                
-                <NavLink to = "/order-history" className = {activeLink} >My Orders</NavLink>
                 {
                   isLogin &&
-                  <NavLink to = "/" onClick={logoutUser} >Logout</NavLink>
-                } 
+                  <span>
+                    <a href="#">
+                      <FaUserCircle size={16} /> Hi, {displayName}
+                    </a>
+                    <NavLink to = "/" onClick={logoutUser} ><FaSignOutAlt size={16} /> Logout </NavLink>
+                  </span>
+                }              
+                {
+                  notIsLogin &&
+                  <>
+                    <NavLink to = "/login" className = {activeLink} >Login</NavLink>
+                    <NavLink to = "/register" className = {activeLink} >Register</NavLink>
+                  </>
+                }
+                <NavLink to = "/order-history" className = {activeLink} >My Orders</NavLink>
               </span>
               {cart}
             </div>
