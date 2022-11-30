@@ -151,9 +151,9 @@ const Header = () => {
                   isLogin &&
                   <span>
                     <a href="#">
-                      <FaUserCircle size={16} /> Hi, {displayName}
+                      <FaUserCircle size={16} className = { styles["icon-position"]} />{displayName}
                     </a>
-                    <NavLink to = "/" onClick={logoutUser} ><FaSignOutAlt size={16} /> Logout </NavLink>
+                    <NavLink to = "/" onClick={logoutUser}  ><FaSignOutAlt size={16} className = { styles["icon-position"]} /><span>Logout</span> </NavLink>
                   </span>
                 }              
                 {
